@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tastes — Recetas de todo el mundo" />
+  <title>Tastes</title>
+
+  <!-- Bootstrap 5 CSS (grid, utilidades) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== LOGIN ===== -->
+  <section id="pantalla-login" class="login-wrapper d-flex align-items-center justify-content-center min-vh-100">
+    <div class="login-card">
+
+      <div class="text-center mb-4">
+        <span class="login-icon" aria-hidden="true">🍳</span>
+        <h1 class="login-logo">Tastes</h1>
+        <p class="login-tagline">Recetas de casa, siempre cerca</p>
+      </div>
+
+      <form id="form-login" autocomplete="off" novalidate>
+
+        <div class="mb-3">
+          <label for="input-email" class="form-label label-custom">Gmail</label>
+          <div class="position-relative">
+            <span class="input-icon-left"><i class="bi bi-envelope"></i></span>
+            <input
+              type="email"
+              id="input-email"
+              class="form-control input-custom input-con-icono"
+              placeholder="tumail@gmail.com"
+              autocomplete="off"
+            />
+          </div>
+          <div id="error-email" class="campo-error d-none">Ingresá un Gmail válido (@gmail.com)</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="input-password" class="form-label label-custom">Contraseña</label>
+          <div class="position-relative">
+            <input
+              type="password"
+              id="input-password"
+              class="form-control input-custom"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password"
+            />
+            <button type="button" class="btn-toggle-pass" id="btn-toggle-pass" aria-label="Mostrar u ocultar contraseña">
+              <i class="bi bi-eye" id="icono-pass"></i>
+            </button>
+          </div>
+          <div id="error-pass" class="campo-error d-none">La contraseña debe tener al menos 6 caracteres</div>
+        </div>
+
+        <div id="login-error" class="login-error d-none" role="alert">
+          <i class="bi bi-exclamation-circle me-1"></i>
+          Gmail o contraseña incorrectos.
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom w-100 mt-2" id="btn-ingresar">
+          <span id="btn-ingresar-texto">Ingresar</span>
+          <span id="btn-ingresar-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+        </button>
+
+        <p class="login-hint mt-3 text-center">
+          <i class="bi bi-info-circle me-1"></i>
+          Demo: <strong>ana@gmail.com</strong> / <strong>demo123</strong>
+        </p>
+
+      </form>
+    </div>
+  </section>
+  <!-- ===== FIN LOGIN ===== -->
+
+
+  <!-- ===== APP PRINCIPAL ===== -->
+  <div id="app-principal" class="d-none">
+
+    <!-- NAVBAR -->
+    <nav class="navbar-custom">
+      <div class="container-fluid px-3 px-md-4">
+        <div class="navbar-inner d-flex align-items-center justify-content-between">
+
+          <a href="#" class="navbar-logo" id="btn-ir-home" aria-label="Ir al inicio">
+            🍳 <span>Tastes</span>
+          </a>
+
+          <div class="navbar-acciones d-flex align-items-center gap-2 gap-md-3">
+            <button class="btn btn-nav" id="btn-favs-nav" aria-label="Ver mis favoritos">
+              <i class="bi bi-heart me-1"></i>
+              <span class="d-none d-md-inline">Mis favoritos</span>
+            </button>
+            <div class="navbar-avatar" id="navbar-avatar" aria-hidden="true">A</div>
+            <button class="btn btn-nav btn-logout" id="btn-logout" aria-label="Cerrar sesión">
+              <i class="bi bi-box-arrow-right me-1"></i>
+              <span class="d-none d-sm-inline">Salir</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="main-content">
+      <div class="container-fluid px-3 px-md-4">
+
+        <!-- GRILLA: buscador, filtros y tarjetas -->
+        <div id="contenido-grid">
+
+          <div class="bienvenida-wrap">
+            <p class="bienvenida-txt">
+              Hola, <strong id="nombre-usuario"></strong> 👋 ¿Qué cocinamos hoy?
+            </p>
+          </div>
+
+          <div class="buscador-wrap mb-3">
+            <div class="input-group buscador-group">
+              <span class="input-group-text buscador-icono" aria-hidden="true">
+                <i class="bi bi-search"></i>
+              </span>
+              <input
+                type="search"
+                id="input-busqueda"
+                class="form-control buscador-input"
+                placeholder="Buscar receta..."
+                aria-label="Buscar receta por nombre"
+              />
+            </div>
+          </div>
+
+          <div class="filtros-categorias mb-3" role="group" aria-label="Filtrar por clima">
+            <button class="chip chip-activo" data-clima="todas">🌍 Todas</button>
+            <button class="chip" data-clima="frio">❄️ Frío</button>
+            <button class="chip" data-clima="calido">☀️ Cálido</button>
+            <button class="chip" data-clima="templado">🌤️ Templado</button>
+            <button class="chip" data-clima="arido">🏜️ Árido</button>
+            <button class="chip" data-clima="humedo">🌧️ Húmedo</button>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <h2 class="seccion-titulo mb-0" id="seccion-titulo-txt">Todas las recetas</h2>
+            <div class="d-flex align-items-center gap-2">
+              <label for="select-tiempo" class="filtro-label mb-0">
+                <i class="bi bi-clock me-1"></i>Tiempo:
+              </label>
+              <select id="select-tiempo" class="select-custom" aria-label="Filtrar por tiempo de cocción">
+                <option value="todos">Todos</option>
+                <option value="15">Hasta 15 min</option>
+                <option value="30">Hasta 30 min</option>
+                <option value="45">Hasta 45 min</option>
+                <option value="60">Hasta 60 min</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="estado-cargando" class="estado-cargando text-center py-5">
+            <div class="spinner-border" style="color: var(--verde-salvia);" role="status">
+              <span class="visually-hidden">Cargando recetas...</span>
+            </div>
+            <p class="mt-3 estado-txt">Cargando recetas...</p>
+          </div>
+
+          <div id="estado-vacio" class="estado-vacio text-center py-5 d-none">
+            <span class="estado-emoji" aria-hidden="true">🥘</span>
+            <h3 class="estado-titulo">No encontramos recetas así...</h3>
+            <p class="estado-subtitulo">Probá con otros filtros o limpiá la búsqueda.</p>
+            <button class="btn btn-secondary-custom mt-2" id="btn-limpiar-filtros">
+              <i class="bi bi-x-circle me-1"></i>Limpiar filtros
+            </button>
+          </div>
+
+          <div id="grilla-recetas" class="row g-3 g-md-4 d-none" aria-label="Listado de recetas">
+            <!-- Las tarjetas se generan dinámicamente desde app.js -->
+          </div>
+
+        </div><!-- #contenido-grid -->
+
+
+        <!-- DETALLE: vista completa de una receta -->
+        <div id="vista-receta" class="d-none">
+
+          <button class="btn btn-secondary-custom mb-4" id="btn-volver">
+            <i class="bi bi-arrow-left me-1"></i> Volver a recetas
+          </button>
+
+          <div class="detalle-card">
+
+            <div class="detalle-imagen-wrap">
+              <img id="detalle-imagen" src="" alt="" class="detalle-imagen" />
+              <div id="detalle-emoji" class="detalle-emoji-fb" style="display:none;"></div>
+              <span id="detalle-badge" class="detalle-badge-cat"></span>
+            </div>
+
+            <div class="detalle-cuerpo">
+
+              <h2 id="detalle-titulo" class="detalle-titulo"></h2>
+
+              <div class="detalle-meta">
+                <span><i class="bi bi-clock me-1"></i><span id="detalle-tiempo"></span></span>
+                <span><i class="bi bi-people me-1"></i><span id="detalle-porciones"></span></span>
+                <span><i class="bi bi-bar-chart me-1"></i><span id="detalle-dificultad"></span></span>
+              </div>
+
+              <p id="detalle-descripcion" class="detalle-descripcion"></p>
+
+              <h3 class="receta-subtitulo">
+                <i class="bi bi-list-check me-2"></i>Ingredientes
+              </h3>
+              <ul id="detalle-ingredientes" class="receta-lista mb-4"></ul>
+
+              <h3 class="receta-subtitulo">
+                <i class="bi bi-clipboard2-check me-2"></i>Preparación
+              </h3>
+              <ol id="detalle-pasos" class="receta-lista receta-lista-pasos"></ol>
+
+              <button class="btn btn-favorito w-100 mt-4" id="btn-fav-detalle">
+                <i class="bi bi-heart me-2" id="icono-fav-detalle"></i>
+                <span id="texto-fav-detalle">Guardar receta</span>
+              </button>
+
+            </div>
+          </div>
+
+        </div><!-- #vista-receta -->
+
+      </div>
+    </main>
+
+  </div>
+  <!-- ===== FIN APP PRINCIPAL ===== -->
+
+
+  <!-- Datos simulados (debe cargarse antes de app.js) -->
+  <script src="js/data.js"></script>
+
+  <!-- Lógica de la aplicación -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
