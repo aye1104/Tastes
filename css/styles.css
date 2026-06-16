@@ -1,0 +1,440 @@
+/* ==========================================================
+   Tastes — Estilos principales
+   Mobile-first | Bootstrap 5 CSS + estilos propios
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   1. TOKENS DE DISEÑO
+   ---------------------------------------------------------- */
+:root {
+  --crema:            #FDF6EC;
+  --verde-salvia:     #A8C5A0;
+  --verde-salvia-dk:  #7ea876;
+  --rosa-durazno:     #F2B5A0;
+  --rosa-durazno-dk:  #e0907a;
+  --amarillo-manteca: #F5E6C8;
+  --marron-cacao:     #6B4C3B;
+  --marron-cacao-lt:  #8a6354;
+  --gris-lino:        #D9CFC4;
+  --blanco-leche:     #FEFCF8;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Nunito', system-ui, sans-serif;
+
+  --radius-card:  16px;
+  --radius-btn:   50px;
+  --radius-badge: 8px;
+  --radius-input: 12px;
+
+  --shadow-card:  0 2px 12px rgba(107, 76, 59, 0.08);
+  --shadow-hover: 0 6px 24px rgba(107, 76, 59, 0.14);
+  --shadow-nav:   0 2px 16px rgba(107, 76, 59, 0.10);
+
+  --transition: 0.22s ease;
+
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--crema);
+  color: var(--marron-cacao);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+:focus-visible {
+  outline: 2px solid var(--verde-salvia);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------
+   2. LOGIN
+   ---------------------------------------------------------- */
+.login-wrapper {
+  background: linear-gradient(145deg, var(--amarillo-manteca) 0%, var(--crema) 60%);
+  padding: var(--space-md);
+}
+
+.login-card {
+  background: var(--blanco-leche);
+  border-radius: 24px;
+  box-shadow: 0 16px 48px rgba(107, 76, 59, 0.18);
+  padding: var(--space-2xl) var(--space-xl);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--gris-lino);
+}
+
+.login-icon    { font-size: 2.5rem; display: block; margin-bottom: var(--space-xs); line-height: 1; }
+.login-logo    { font-family: var(--font-display); font-size: 2rem; color: var(--marron-cacao); margin-bottom: var(--space-xs); line-height: 1.1; }
+.login-tagline { font-size: 0.9rem; color: var(--marron-cacao-lt); margin-bottom: 0; }
+
+.label-custom {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--marron-cacao);
+  margin-bottom: var(--space-xs);
+}
+
+.input-custom {
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--gris-lino);
+  background: var(--crema);
+  color: var(--marron-cacao);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.input-custom:focus {
+  border-color: var(--verde-salvia);
+  box-shadow: 0 0 0 3px rgba(168, 197, 160, 0.22);
+  background: var(--blanco-leche);
+  color: var(--marron-cacao);
+  outline: none;
+}
+.input-custom::placeholder { color: var(--gris-lino); }
+.input-custom.input-error {
+  border-color: #e0907a;
+  box-shadow: 0 0 0 3px rgba(242, 181, 160, 0.25);
+}
+
+.input-icon-left {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--marron-cacao-lt); font-size: 0.95rem; pointer-events: none; z-index: 1;
+}
+.input-con-icono { padding-left: 2.2rem; }
+
+.btn-toggle-pass {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--marron-cacao-lt);
+  cursor: pointer; padding: 0 4px; font-size: 1rem; line-height: 1;
+  transition: color var(--transition);
+}
+.btn-toggle-pass:hover { color: var(--marron-cacao); }
+
+.campo-error { font-size: 0.8rem; color: #9b3b2a; margin-top: 4px; padding-left: 2px; }
+
+.login-error {
+  background: #fde8e4; border: 1px solid #f2b5a0; color: #9b3b2a;
+  border-radius: var(--radius-badge); padding: var(--space-sm) var(--space-md);
+  font-size: 0.88rem; margin-bottom: var(--space-sm);
+}
+
+.login-hint        { font-size: 0.82rem; color: var(--marron-cacao-lt); }
+.login-hint strong { color: var(--marron-cacao); font-weight: 700; }
+
+@media (min-width: 576px) {
+  .login-card { padding: var(--space-2xl) 2.5rem; }
+}
+
+/* ----------------------------------------------------------
+   3. BOTONES
+   ---------------------------------------------------------- */
+.btn-primary-custom {
+  background-color: var(--verde-salvia); color: var(--blanco-leche);
+  border: none; border-radius: var(--radius-btn);
+  font-family: var(--font-body); font-weight: 700; font-size: 0.95rem;
+  padding: 0.65rem 1.5rem; letter-spacing: 0.03em;
+  transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-primary-custom:hover,
+.btn-primary-custom:focus-visible {
+  background-color: var(--verde-salvia-dk); color: var(--blanco-leche);
+  box-shadow: var(--shadow-hover); transform: translateY(-1px);
+}
+.btn-primary-custom:active { transform: translateY(0); }
+
+.btn-secondary-custom {
+  background-color: var(--amarillo-manteca); color: var(--marron-cacao);
+  border: 1.5px solid var(--gris-lino); border-radius: var(--radius-btn);
+  font-family: var(--font-body); font-weight: 700; font-size: 0.88rem;
+  padding: 0.55rem 1.2rem;
+  transition: background-color var(--transition), box-shadow var(--transition);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+}
+.btn-secondary-custom:hover { background-color: var(--gris-lino); color: var(--marron-cacao); }
+
+/* ----------------------------------------------------------
+   4. NAVBAR
+   ---------------------------------------------------------- */
+.navbar-custom {
+  position: sticky; top: 0; z-index: 100;
+  background-color: var(--blanco-leche);
+  border-bottom: 1.5px solid var(--gris-lino);
+  box-shadow: var(--shadow-nav);
+  padding: var(--space-sm) 0;
+}
+.navbar-inner { min-height: 52px; }
+
+.navbar-logo {
+  font-family: var(--font-display); font-size: 1.35rem; color: var(--marron-cacao);
+  text-decoration: none; display: flex; align-items: center; gap: var(--space-sm);
+  transition: color var(--transition);
+}
+.navbar-logo:hover { color: var(--marron-cacao-lt); }
+.navbar-logo span  { font-size: 1.2rem; }
+
+.navbar-avatar {
+  width: 34px; height: 34px; background: var(--amarillo-manteca);
+  color: var(--marron-cacao); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+  border: 1.5px solid var(--gris-lino); flex-shrink: 0;
+}
+
+.btn-nav {
+  background: none; border: 1.5px solid var(--gris-lino); border-radius: var(--radius-btn);
+  color: var(--marron-cacao); font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  transition: background-color var(--transition), border-color var(--transition);
+  display: inline-flex; align-items: center;
+}
+.btn-nav:hover         { background-color: var(--amarillo-manteca); border-color: var(--gris-lino); color: var(--marron-cacao); }
+.btn-nav.activo        { background-color: var(--rosa-durazno); border-color: var(--rosa-durazno); color: var(--blanco-leche); }
+.btn-logout            { color: var(--marron-cacao-lt); }
+.btn-logout:hover      { background-color: #fde8e4; border-color: var(--rosa-durazno); color: #9b3b2a; }
+
+/* ----------------------------------------------------------
+   5. CONTENIDO PRINCIPAL
+   ---------------------------------------------------------- */
+.main-content    { padding-top: var(--space-lg); padding-bottom: var(--space-2xl); }
+.bienvenida-wrap { margin-bottom: var(--space-md); }
+.bienvenida-txt  { font-size: 1rem; color: var(--marron-cacao-lt); margin-bottom: 0; }
+.bienvenida-txt strong { color: var(--marron-cacao); }
+
+/* ----------------------------------------------------------
+   6. BUSCADOR
+   ---------------------------------------------------------- */
+.buscador-group  { border-radius: var(--radius-input); overflow: hidden; box-shadow: var(--shadow-card); }
+.buscador-icono  { background: var(--blanco-leche); border: 1.5px solid var(--gris-lino); border-right: none; color: var(--marron-cacao-lt); }
+.buscador-input  {
+  border: 1.5px solid var(--gris-lino); border-left: none;
+  background: var(--blanco-leche); color: var(--marron-cacao);
+  font-family: var(--font-body); font-size: 0.95rem; padding: 0.65rem 1rem;
+}
+.buscador-input:focus          { border-color: var(--verde-salvia); box-shadow: none; background: var(--blanco-leche); color: var(--marron-cacao); outline: none; }
+.buscador-input::placeholder   { color: var(--gris-lino); }
+.buscador-group:focus-within .buscador-icono { border-color: var(--verde-salvia); }
+
+/* ----------------------------------------------------------
+   7. CHIPS DE CLIMA
+   ---------------------------------------------------------- */
+.filtros-categorias {
+  display: flex; gap: var(--space-sm); overflow-x: auto;
+  padding-bottom: var(--space-xs); scrollbar-width: none; -ms-overflow-style: none;
+}
+.filtros-categorias::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex-shrink: 0; background: var(--blanco-leche); border: 1.5px solid var(--gris-lino);
+  border-radius: var(--radius-btn); color: var(--marron-cacao);
+  font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+  padding: 0.35rem 1rem; cursor: pointer; white-space: nowrap;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+.chip:hover       { background-color: var(--amarillo-manteca); }
+.chip-activo      { background-color: var(--verde-salvia); border-color: var(--verde-salvia); color: var(--blanco-leche); }
+.chip-activo:hover { background-color: var(--verde-salvia-dk); border-color: var(--verde-salvia-dk); color: var(--blanco-leche); }
+
+/* ----------------------------------------------------------
+   8. FILTRO TIEMPO Y TÍTULO
+   ---------------------------------------------------------- */
+.seccion-titulo { font-family: var(--font-display); font-size: 1.3rem; color: var(--marron-cacao); }
+.filtro-label   { font-size: 0.82rem; font-weight: 700; color: var(--marron-cacao-lt); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.select-custom {
+  background: var(--blanco-leche); border: 1.5px solid var(--gris-lino);
+  border-radius: var(--radius-badge); color: var(--marron-cacao);
+  font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+  padding: 0.3rem 0.7rem; cursor: pointer; appearance: auto;
+  transition: border-color var(--transition);
+}
+.select-custom:focus { border-color: var(--verde-salvia); box-shadow: 0 0 0 3px rgba(168, 197, 160, 0.22); outline: none; }
+
+/* ----------------------------------------------------------
+   9. ESTADOS (cargando / vacío)
+   ---------------------------------------------------------- */
+.estado-cargando,
+.estado-vacio    { padding: var(--space-2xl) var(--space-md); }
+.estado-emoji    { font-size: 3.5rem; display: block; margin-bottom: var(--space-md); }
+.estado-titulo   { font-family: var(--font-display); font-size: 1.3rem; color: var(--marron-cacao); margin-bottom: var(--space-sm); }
+.estado-subtitulo { font-size: 0.9rem; color: var(--marron-cacao-lt); }
+.estado-txt      { font-size: 0.9rem; color: var(--marron-cacao-lt); }
+
+/* ----------------------------------------------------------
+   10. TARJETAS DE RECETA
+   ---------------------------------------------------------- */
+.receta-card {
+  background: var(--blanco-leche); border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card); border: 1px solid var(--gris-lino);
+  overflow: hidden; cursor: pointer;
+  height: 100%; display: flex; flex-direction: column;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.receta-card:hover        { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.receta-card:focus-visible { outline: 2px solid var(--verde-salvia); outline-offset: 2px; }
+
+.card-imagen-wrap {
+  position: relative; overflow: hidden; height: 180px;
+  background: var(--amarillo-manteca); flex-shrink: 0;
+}
+.card-imagen          { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+.receta-card:hover .card-imagen { transform: scale(1.04); }
+.card-imagen-fallback {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; background: var(--amarillo-manteca);
+}
+
+.btn-favorito-card {
+  position: absolute; top: 10px; right: 10px;
+  width: 34px; height: 34px;
+  background: var(--blanco-leche); border: none; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--gris-lino);
+  box-shadow: var(--shadow-card); cursor: pointer; z-index: 2;
+  transition: color var(--transition), background-color var(--transition), transform var(--transition);
+}
+.btn-favorito-card:hover  { color: var(--rosa-durazno); transform: scale(1.12); }
+.btn-favorito-card.activo { color: var(--rosa-durazno-dk); background: #fff0ec; }
+
+.card-body-custom {
+  padding: var(--space-md);
+  display: flex; flex-direction: column; gap: var(--space-xs); flex: 1;
+}
+.card-badge {
+  display: inline-block; background: var(--verde-salvia); color: var(--blanco-leche);
+  border-radius: var(--radius-badge); font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 8px; align-self: flex-start;
+}
+.card-origen { font-size: 0.72rem; color: var(--marron-cacao-lt); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50%; }
+.card-nombre { font-family: var(--font-display); font-size: 1.05rem; color: var(--marron-cacao); margin-bottom: 0; line-height: 1.25; }
+.card-meta   {
+  font-size: 0.82rem; color: var(--marron-cacao-lt);
+  display: flex; align-items: center; gap: var(--space-sm);
+  margin-top: auto; padding-top: var(--space-xs);
+}
+.card-meta i { color: var(--verde-salvia-dk); }
+
+@media (min-width: 768px) {
+  .main-content { padding-top: var(--space-xl); }
+  .seccion-titulo { font-size: 1.5rem; }
+  .card-imagen-wrap { height: 200px; }
+}
+
+/* ----------------------------------------------------------
+   11. DETALLE RECETA
+   ---------------------------------------------------------- */
+#vista-receta { padding-top: var(--space-xs); }
+
+.detalle-card {
+  background: var(--blanco-leche);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--gris-lino);
+  overflow: hidden;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.detalle-imagen-wrap {
+  position: relative; height: 260px;
+  background: var(--amarillo-manteca); overflow: hidden;
+}
+.detalle-imagen    { width: 100%; height: 100%; object-fit: cover; }
+.detalle-emoji-fb  {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; background: var(--amarillo-manteca);
+}
+.detalle-badge-cat {
+  position: absolute; bottom: 12px; left: 14px;
+  background: var(--verde-salvia); color: var(--blanco-leche);
+  border-radius: var(--radius-badge); font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.03em; padding: 3px 10px;
+}
+
+.detalle-cuerpo  { padding: var(--space-lg); }
+.detalle-titulo  {
+  font-family: var(--font-display); font-size: 1.45rem;
+  color: var(--marron-cacao); margin-bottom: var(--space-sm); line-height: 1.2;
+}
+.detalle-meta {
+  font-size: 0.85rem; color: var(--marron-cacao-lt);
+  display: flex; flex-wrap: wrap; gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--gris-lino);
+}
+.detalle-meta i { color: var(--verde-salvia-dk); }
+
+.detalle-descripcion {
+  font-size: 0.92rem; color: var(--marron-cacao-lt); line-height: 1.65;
+  border-left: 3px solid var(--amarillo-manteca);
+  padding-left: var(--space-md); margin-bottom: var(--space-lg);
+}
+
+.receta-subtitulo {
+  font-family: var(--font-body); font-size: 0.85rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--marron-cacao); margin-bottom: var(--space-md);
+}
+.receta-subtitulo i { color: var(--verde-salvia); }
+
+.receta-lista           { padding-left: var(--space-lg); margin-bottom: 0; }
+.receta-lista li        { font-size: 0.9rem; color: var(--marron-cacao); margin-bottom: var(--space-sm); line-height: 1.5; }
+.receta-lista-pasos li  { padding-left: var(--space-sm); }
+
+.btn-favorito {
+  background: var(--amarillo-manteca); border: 1.5px solid var(--gris-lino);
+  border-radius: var(--radius-btn); color: var(--marron-cacao);
+  font-family: var(--font-body); font-weight: 700; font-size: 0.95rem;
+  padding: 0.65rem 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+.btn-favorito:hover   { background-color: var(--gris-lino); color: var(--marron-cacao); }
+.btn-favorito.activo  { background-color: var(--rosa-durazno); border-color: var(--rosa-durazno); color: var(--blanco-leche); }
+.btn-favorito.activo:hover { background-color: var(--rosa-durazno-dk); border-color: var(--rosa-durazno-dk); }
+
+@media (min-width: 768px) {
+  .detalle-imagen-wrap { height: 360px; }
+  .detalle-titulo      { font-size: 1.8rem; }
+  .detalle-cuerpo      { padding: var(--space-xl); }
+}
+
+/* ----------------------------------------------------------
+   12. ANIMACIONES
+   ---------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .receta-card { animation: fadeInUp 0.3s ease both; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+.receta-card:nth-child(1) { animation-delay: 0.00s; }
+.receta-card:nth-child(2) { animation-delay: 0.04s; }
+.receta-card:nth-child(3) { animation-delay: 0.08s; }
+.receta-card:nth-child(4) { animation-delay: 0.12s; }
+.receta-card:nth-child(5) { animation-delay: 0.16s; }
+.receta-card:nth-child(6) { animation-delay: 0.20s; }
+.receta-card:nth-child(7) { animation-delay: 0.24s; }
+.receta-card:nth-child(8) { animation-delay: 0.28s; }
